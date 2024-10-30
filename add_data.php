@@ -1,5 +1,4 @@
 <?php
-
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
@@ -9,11 +8,9 @@ $dbname = "ugagro_test";
 $username_db = "root";
 $password_db = "b.5647382910-D";
 
-$result_prize = "No hehe";
+$conn = new mysqli($servername, $username_db, $password_db, $dbname);
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-
-    $conn = new mysqli($servername, $username_db, $password_db, $dbname);
 
     if ($conn->connect_error) {
         die("Connection failed: " . $conn->connect_error);
@@ -36,25 +33,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $stmt_prize = $conn->prepare("SELECT id FROM prizes WHERE id NOT IN (SELECT prizes_id FROM itog) ORDER BY id ASC LIMIT 1");
         $stmt_prize->execute();
         $result = $stmt_prize->get_result();
-
-        // Начало вывода
-        $sql_output = "SELECT farmname FROM winners ORDER BY id DESC LIMIT 1";
-
-        $result_query = $conn->query($sql_output);
-
-        // Проверка результата
-        if ($result_query->num_rows > 0) {
-        
-            // Получение строки результата
-            $row = $result_query->fetch_assoc();
-            $result_prize = $row['farmname'];
-            
-        } else {
-            $result_prize = "no prize";
-        }
-
-        //Конец
-
         if ($row = $result->fetch_assoc()) {
             $prizes_id = $row['id'];
 
@@ -78,13 +56,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         echo "Error inserting into winners table: " . $stmt->error;
     }
 
-    exit();
     $stmt->close();
     $conn->close();
-
 }
-/*else {
-    $conn = new mysqli($servername, $username_db, $password_db, $dbname);
+    
+function call_sql($conn, $servername, $username_db, $password_db, $dbname)
+    {
+    
     // SQL-запрос для получения названия последнего выигранного подарка
     $sql_output = "SELECT farmname FROM winners ORDER BY id DESC LIMIT 1";
 
@@ -92,15 +70,16 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     // Проверка результата
     if ($result_query->num_rows > 0) {
-        
         // Получение строки результата
         $row = $result_query->fetch_assoc();
         $result_prize = $row['farmname'];
     } else {
         $result_prize = "no prize";
+        
     }
-
     $conn->close();
-}  
-*/
+    return $result_prize;
+    }
+    
+
 ?>

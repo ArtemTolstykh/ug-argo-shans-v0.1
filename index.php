@@ -12,33 +12,6 @@
 </head>
 <body>
 
-<?php 
-if (session_status() === PHP_SESSION_NONE) {
-    session_start();
-}
-
-include 'add_data.php'; 
-
-if (isset($_SESSION['result_prize'])) {
-    $result_prize = $_SESSION['result_prize'];
-} else {
-    $result_prize = "no prize"; // Значение по умолчанию
-}
-?>
-
-<div id="myModal" class="modal">
-  <div class="modal-content">
-    <!--<span class="close">&times;</span> -->
-    <h2>Поздравляем!</h2>
-    <p>Вы выйграли: </p>
-    <strong>
-    <?php echo $result_prize; ?>
-    </strong>
-    <p>Получите его на стенде ГК "Шанс", назвав свой номер телефона.</p>
-
-    <button class="modalBtn" id="confirmButton">Отлично</button>
-  </div>
-</div>
 
 <div class="slider-container">
     
@@ -79,7 +52,7 @@ if (isset($_SESSION['result_prize'])) {
 
     <!-- Кнопка для отправки формы -->
     <input id="slider-button" class="submit" type="submit" name="result-submit" value="Отправить" href="wheel.html">
-
+    
     <span class="data-processing">*нажимая кнопку "отправить", вы соглашаетесь c <a href="https://shans-group.com/soglasie-na-obrabotku-personalnykh-dannykh/">политикой обработки персональных данных<a></span>
   </form>
   </div>
@@ -92,24 +65,32 @@ if (isset($_SESSION['result_prize'])) {
         <!-- язычок барабана -->
         <div class="ticker"></div>
         <!-- кнопка -->
-        
-        <button class="btn-spin btn- 
-
-
-
-
-        result">Испытай удачу</button>
-    
+        <button class="btn-spin btn-result">Испытай удачу</button>
       </div>
     </div>
   </div>
+</div>
 
+<div id="myModal" class="modal">
+  <div class="modal-content">
+    <!--<span class="close">&times;</span> -->
+    <h2>Поздравляем!</h2>
+    <p>Вы выйграли: </p>
+    <strong>
+    <?php include 'add_data.php'; 
+    $result_sql = call_sql($conn, $servername, $username_db, $password_db, $dbname); 
+    echo $result_sql ?? " ";
+
+    ?>
+    </strong>
+    <p>Получите его на стенде ГК "Шанс", назвав свой номер телефона.</p>
+
+    <button class="modalBtn" id="confirmButton">Отлично</button>
+  </div>
 </div>
 
 
-
 <script src="main.js"></script>
-
 <script type="text/javascript">
 function updateOutput(value) {
     const output = document.getElementById('rangeOutput');
@@ -149,6 +130,5 @@ function updateRange(value) {
     }
 }
 </script>
-
 </body>
 </html>
