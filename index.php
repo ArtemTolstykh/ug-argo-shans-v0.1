@@ -3,12 +3,13 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Vertical Slider test</title>
+  <title>Шанс на барабане</title>
   <link rel="stylesheet" href="style.css">
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
 <body>
 
@@ -65,30 +66,13 @@
         <!-- язычок барабана -->
         <div class="ticker"></div>
         <!-- кнопка -->
-        <button class="btn-spin btn-result">Испытай удачу</button>
-      </div>
-    </div>
+        <form method="POST" action="prize-output.php" style="display: contents;">
+            <input class="btn-spin btn-result" type="submit" name="btn-spin-result" value="Испытай удачу">
+            </form>
+        </div>
+        </div>
   </div>
 </div>
-
-<div id="myModal" class="modal">
-  <div class="modal-content">
-    <!--<span class="close">&times;</span> -->
-    <h2>Поздравляем!</h2>
-    <p>Вы выйграли: </p>
-    <strong>
-    <?php include 'add_data.php'; 
-    $result_sql = call_sql($conn, $servername, $username_db, $password_db, $dbname); 
-    echo $result_sql ?? " ";
-
-    ?>
-    </strong>
-    <p>Получите его на стенде ГК "Шанс", назвав свой номер телефона.</p>
-
-    <button class="modalBtn" id="confirmButton">Отлично</button>
-  </div>
-</div>
-
 
 <script src="main.js"></script>
 <script type="text/javascript">

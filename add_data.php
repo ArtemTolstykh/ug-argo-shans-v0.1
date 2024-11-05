@@ -55,7 +55,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     } else {
         echo "Error inserting into winners table: " . $stmt->error;
     }
-
     $stmt->close();
     $conn->close();
 }
@@ -64,7 +63,20 @@ function call_sql($conn, $servername, $username_db, $password_db, $dbname)
     {
     
     // SQL-запрос для получения названия последнего выигранного подарка
-    $sql_output = "SELECT farmname FROM winners ORDER BY id DESC LIMIT 1";
+    $sql_output = "
+    SELECT 
+        w.fullname AS person_name,    -- ФИО человека
+        p.name AS prize_name          -- Название приза
+    FROM 
+        itog i
+    JOIN 
+        winners w ON i.winners_id = w.id
+    JOIN 
+        prizes p ON i.prizes_id = p.id
+    ORDER BY 
+        i.id DESC
+    LIMIT 1;
+    ";
 
     $result_query = $conn->query($sql_output);
 
@@ -72,7 +84,7 @@ function call_sql($conn, $servername, $username_db, $password_db, $dbname)
     if ($result_query->num_rows > 0) {
         // Получение строки результата
         $row = $result_query->fetch_assoc();
-        $result_prize = $row['farmname'];
+        $result_prize = $row['prize_name'];
     } else {
         $result_prize = "no prize";
         
@@ -83,3 +95,5 @@ function call_sql($conn, $servername, $username_db, $password_db, $dbname)
     
 
 ?>
+
+

@@ -1,22 +1,22 @@
+document.getElementById("dataForm").addEventListener("submit", function(event) {
+    event.preventDefault(); // Отключение стандартного поведения формы
+
+    const formData = new FormData(this);
+
+    fetch("add_data.php", {
+      method: "POST",
+      body: formData
+    })
+    .then(response => response.text()) // Можно заменить на response.json() для JSON
+    .then(data => {
+      document.getElementById("response").innerText = data; // Отображение ответа от сервера
+    })
+    .catch(error => {
+      console.error("Ошибка:", error);
+    });
+  });
+
 let isSlide1Visible = true;
-
-document.getElementById('dataForm').addEventListener('submit', function(event) {
-  event.preventDefault();
-
-  const formData = new FormData(this);
-
-  fetch('index.php', {
-    method: 'POST',
-    body: formData
-  })
-  .then(response => response.text())
-  .then(data => {
-    console.log().innerHTML = data;
-  })
-  .catch(error => console.error('Ошибка: ', error));
-});
-
-
 
 document.getElementById('dataForm').addEventListener('submit', (event) => {
     // Отменяем стандартное поведение формы (перезагрузку страницы)
@@ -41,7 +41,7 @@ document.getElementById('dataForm').addEventListener('submit', (event) => {
 
 
 // Обработка для кнопки confirmButton на втором слайде
-document.getElementById('confirmButton').addEventListener('click', () => {
+/*document.getElementById('confirmButton').addEventListener('click', () => {
     const slide1 = document.getElementById('slide1');
     const slide2 = document.getElementById('slide2');
 
@@ -53,9 +53,9 @@ document.getElementById('confirmButton').addEventListener('click', () => {
     isSlide1Visible = true;
     isSlide2Visible = false;
 });
+*/
 
 //проверка ввода телефона
-
 document.getElementById('phone').addEventListener('input', function (e) {
     const input = e.target;
     const value = input.value;
@@ -130,8 +130,6 @@ const wheel = document.querySelector(".deal-wheel");
 const spinner = wheel.querySelector(".spinner");
 const trigger = wheel.querySelector(".btn-spin");
 const ticker = wheel.querySelector(".ticker");
-
-
 
 // на сколько секторов нарезаем круг
 const prizeSlice = 360 / prizes.length;
@@ -291,7 +289,15 @@ spinner.addEventListener("transitionend", () => {
 setupWheel();
 
 
+// Отслеживаем изменение totalSpins
+function increaseSpins() {
+  setTimeout(() => {
+    window.location.href = 'prize-output.php';
+  }, 300);
+}
 
+
+/*
 // Получаем элементы модального окна и кнопки закрытия
 let modal = document.getElementById("myModal");
 let confirmButton = document.getElementById("confirmButton");
@@ -309,29 +315,24 @@ function closeModal() {
   //modal.style.display = "none";  
 }
 
-// Отслеживаем изменение totalSpins
-function increaseSpins() {
-  setTimeout(() => {
-      openModal();
-  }, 300);
-}
+
+
 
 // Закрытие модального окна при клике на "Подтвердить" или на кнопку закрытия
 confirmButton.onclick = closeModal;
 closeButton.onclick = closeModal;
 
 // Закрытие модального окна при клике вне его
-window.onclick = function(event) {
-  if (event.target == modal) {
-    closeModal();
-  }
-}
+//window.onclick = function(event) {
+//  if (event.target == modal) {
+//    closeModal();
+//  }
+//}
 
 // Пример использования: увеличиваем totalSpins и проверяем модальное окно
 
-console.log('Кол-во спинов: ', totalSpins);
-
-/* 
+//console.log('Кол-во спинов: ', totalSpins);
+ 
 
 let fullName = document.getElementById('fullname');
 let phone = document.getElementById('phone');
@@ -344,4 +345,17 @@ fullName.value = '';
   hectares.value = '';
   farmName.value = '';
 
+
+
+$sql_output = "
+        SELECT 
+            w.fullname AS person_name,    -- ФИО человека
+            p.name AS prize_name          -- Название приза
+        FROM 
+            itog i
+        JOIN 
+            winners w ON i.winners_id = w.id
+        JOIN 
+            prizes p ON i.prizes_id = p.id;
+        ";
 */
