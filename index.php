@@ -13,6 +13,30 @@
 </head>
 <body>
 
+<?php
+// Подключение к базе данных
+require 'add_data.php';
+
+// Получение максимального id из таблицы prizes
+$query_prizes = "SELECT MAX(id) AS max_id FROM prizes";
+$result_prizes = mysqli_query($conn, $query_prizes);
+$row_prizes = mysqli_fetch_assoc($result_prizes);
+$max_id_prizes = $row_prizes['max_id'];
+
+// Получение максимального prizes_id из таблицы itog
+$query_itog = "SELECT MAX(prizes_id) AS max_id_from_itog FROM itog";
+$result_itog = mysqli_query($conn, $query_itog);
+$row_itog = mysqli_fetch_assoc($result_itog);
+$max_id_itog = $row_itog['max_id_from_itog'];
+
+// Сравнение значений и переадресация, если они равны
+if ($max_id_prizes == $max_id_itog) {
+    header("Location: no-prizes.html");
+    exit;
+}
+
+// Остальной код, если значения не совпадают
+?>
 
 <div class="slider-container">
     
@@ -113,6 +137,33 @@ function updateRange(value) {
         }
     }
 }
+/*
+$(document).ready(function() {
+    $('#dataForm').submit(function(event) {
+        event.preventDefault(); // Предотвращаем стандартную отправку формы
+        
+        $.ajax({
+            url: 'add_data.php',
+            type: 'POST',
+            data: $(this).serialize(),
+            dataType: 'json',
+            success: function(response) {
+                if (response.status === 'redirect') {
+                    // Если получен статус "redirect", перенаправляем на указанный URL
+                    window.location.href = response.url;
+                } else if (response.status === 'error') {
+                    alert(response.message); // Выводим сообщение об ошибке
+                } else if (response.status === 'success') {
+                    //alert(response.message); // Выводим сообщение об успехе
+                    //$('#dataForm')[0].reset();
+                  }
+            },
+            error: function() {
+                alert('Ошибка отправки запроса. бе');
+            }
+        });
+    });
+}); */
 </script>
 </body>
 </html>

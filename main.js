@@ -1,3 +1,4 @@
+/*
 document.getElementById("dataForm").addEventListener("submit", function(event) {
     event.preventDefault(); // Отключение стандартного поведения формы
 
@@ -15,6 +16,27 @@ document.getElementById("dataForm").addEventListener("submit", function(event) {
       console.error("Ошибка:", error);
     });
   });
+*/
+
+$(document).ready(function() {
+  $('#dataForm').submit(function(event) {
+    event.preventDefault();
+    
+    $.ajax({
+      type: "POST",
+      url: "add_data.php",
+      data: $('#dataForm').serialize(),
+      success: function(response) {
+        var data = JSON.parse(response);
+        if (data.redirect) {
+          window.location.href = data.redirect;
+        } else {
+          console.log("Уникаьлный пользовалеть. Запрос успешно выполнен!");
+        }
+      }
+    });
+  });
+});
 
 let isSlide1Visible = true;
 
