@@ -8,11 +8,14 @@
   padding: 0;
   box-sizing: border-box;
 }
-
+/*
+@media (max-height: 900px) {
+  form {
+    transition: scale(0.7)
+  }
+}
+*/
 body {
-  display: flex;
-  justify-content: center;
-  align-items: center;
   height: 100vh;
   background-color: #f4f4f4;
   font-family: "Noto Sans", sans-serif;
@@ -45,13 +48,15 @@ body {
     transition: transform 0.5s ease-in-out;
 }
 
+
 #slide1 {
-    background-color: #75B72C; /*  */
+  /*  background-color: #75B72C;   */
 }
 
 #slide2 {
     background-color: #75B72C;
     transform: translateY(100%);
+    display: none;
 }
 
 /*
@@ -70,7 +75,10 @@ form {
   border-radius: 19px;
   background-color: #fff;
   color: #000;
-  
+
+  transform: scale(0.7);
+
+
   -webkit-box-shadow: 10px 10px 14px -7px rgba(0,0,0,0.3);
   -moz-box-shadow: 10px 10px 14px -7px rgba(0,0,0,0.3);
   box-shadow: 10px 10px 14px -7px rgba(0,0,0,0.3);
@@ -111,7 +119,6 @@ label[for="hectares"] {
 }
 
 input {
-  margin-bottom: 35px;
   padding: 10px;
   font-size: 15px;
 }

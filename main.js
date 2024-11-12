@@ -38,28 +38,20 @@ $(document).ready(function() {
   });
 });
 
-let isSlide1Visible = true;
-
 document.getElementById('dataForm').addEventListener('submit', (event) => {
-    // Отменяем стандартное поведение формы (перезагрузку страницы)
-    //event.preventDefault();
-
+    
     const slide1 = document.getElementById('slide1');
     const slide2 = document.getElementById('slide2');
 
-    if (isSlide1Visible) {
-        // Первый элемент уезжает вниз, второй выезжает сверху
-        slide1.style.transform = 'translateY(100%)';
-        slide2.style.transform = 'translateY(0)';
-    } else {
-        // Первый элемент выезжает сверху, второй уезжает вниз
-        slide1.style.transform = 'translateY(0)';
-        slide2.style.transform = 'translateY(100%)';
-    }
+    // Делаем slide2 видимым
+    slide2.style.display = 'flex';
+    slide2.style.transform = 'translateY(0)';
 
-    // Переключаем состояние
-    isSlide1Visible = !isSlide1Visible;
+    // Анимация: slide1 уезжает вниз, slide2 появляется
+    slide1.style.transform = 'translateY(100%)';
+
 });
+
 
 
 // Обработка для кнопки confirmButton на втором слайде
