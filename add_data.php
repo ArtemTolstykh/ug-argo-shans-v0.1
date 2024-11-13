@@ -1,20 +1,11 @@
 <?php
+include 'db_conn.php';
+
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
 
-$servername = "localhost";
-$dbname = "ugagro_test";
-$username_db = "root";
-$password_db = "b.5647382910-D";
-
-$conn = new mysqli($servername, $username_db, $password_db, $dbname);
-
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-
-    if ($conn->connect_error) {
-        die("Connection failed: " . $conn->connect_error);
-    }
 
     $fullname = $_POST['fullname'];
     $phone = $_POST['phone'];
@@ -30,7 +21,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $check_stmt->close();
 
     if ($phone_exists > 0) {
-        // Выводим alert, если телефон уже зарегистрирован
+        // переадресация, если телефон уже зарегистрирован
         echo json_encode(['redirect' => 'er-message.html']);
         exit();
     } else {

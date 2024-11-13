@@ -44,7 +44,7 @@ document.getElementById('dataForm').addEventListener('submit', (event) => {
     const slide2 = document.getElementById('slide2');
 
     // Делаем slide2 видимым
-    slide2.style.display = 'flex';
+    //slide2.style.display = 'flex';
     slide2.style.transform = 'translateY(0)';
 
     // Анимация: slide1 уезжает вниз, slide2 появляется
@@ -100,7 +100,7 @@ const prizes = [
   { text: "", color: "hsl(208 78% 38%)", count: 0 },
   { text: "", color: "hsl(32 100% 47%)", count: 0 },
   { text: "", color: "hsl(328 100% 44%)", count: 0 },
-  */
+*/
 
 let totalSpins = 0; //Кол во спинов 
 

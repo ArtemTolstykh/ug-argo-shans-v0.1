@@ -15,7 +15,7 @@
 
 <?php
 // Подключение к базе данных
-require 'add_data.php';
+require 'db_conn.php';
 
 // Получение максимального id из таблицы prizes
 $query_prizes = "SELECT MAX(id) AS max_id FROM prizes";
@@ -44,10 +44,10 @@ if ($max_id_prizes == $max_id_itog) {
 
   <form class="" id="dataForm" action="add_data.php" method="POST">
     <div class="logo">
-      <img src="logo.png" alt="logo-gk-shans">
+      <img src="logo.webp" alt="logo-gk-shans">
     </div>
 
-    <span class="main-txt">Заполни анкету, чтобы испытать Шанс!</span>
+    <span class="main-txt">Заполни анкету и получи приз!</span>
 
     <!-- Поле для ввода ФИО -->
     <label for="fullname"><span class="star-required">*</span>ФИО:</label>
@@ -137,33 +137,11 @@ function updateRange(value) {
         }
     }
 }
-/*
-$(document).ready(function() {
-    $('#dataForm').submit(function(event) {
-        event.preventDefault(); // Предотвращаем стандартную отправку формы
-        
-        $.ajax({
-            url: 'add_data.php',
-            type: 'POST',
-            data: $(this).serialize(),
-            dataType: 'json',
-            success: function(response) {
-                if (response.status === 'redirect') {
-                    // Если получен статус "redirect", перенаправляем на указанный URL
-                    window.location.href = response.url;
-                } else if (response.status === 'error') {
-                    alert(response.message); // Выводим сообщение об ошибке
-                } else if (response.status === 'success') {
-                    //alert(response.message); // Выводим сообщение об успехе
-                    //$('#dataForm')[0].reset();
-                  }
-            },
-            error: function() {
-                alert('Ошибка отправки запроса. бе');
-            }
-        });
-    });
-}); */
+
+
+
+window.addEventListener('load', applyScale);
+window.addEventListener('resize', applyScale);
 </script>
 </body>
 </html>
