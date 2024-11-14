@@ -47,7 +47,7 @@ if ($max_id_prizes == $max_id_itog) {
       <img src="logo.webp" alt="logo-gk-shans">
     </div>
 
-    <span class="main-txt">Заполни анкету и получи приз!</span>
+    <div class="main-txt-in-form"><span class="main-txt">Заполни анкету и получи приз!</span></div>
 
     <!-- Поле для ввода ФИО -->
     <label for="fullname"><span class="star-required">*</span>ФИО:</label>
@@ -56,7 +56,7 @@ if ($max_id_prizes == $max_id_itog) {
     <!-- Поле для ввода номера телефона -->
     <label for="phone"><span class="star-required">*</span>Номер телефона:</label>
    
-    <input type="text" id="phone" name="phone" placeholder="+7" maxlength="20" required>
+    <input type="text" id="phone" name="phone" maxlength="20" inputmode="numeric" placeholder="+7 " required>
 
     <!-- Ползунок для выбора гектаров -->
     <label for="hectares"><span class="star-required">*</span>Количество гектаров:</label>
@@ -76,19 +76,26 @@ if ($max_id_prizes == $max_id_itog) {
     <input type="text" id="farmname" name="farmname" placeholder="Введите название хозяйства">
 
     <!-- Кнопка для отправки формы -->
-    <input id="slider-button" class="submit" type="submit" name="result-submit" value="Отправить" href="wheel.html">
+    <input id="slider-button" class="submit" type="submit" name="result-submit" value="Отправить">
     
-    <span class="data-processing">*нажимая кнопку "отправить", вы соглашаетесь c <a href="https://shans-group.com/soglasie-na-obrabotku-personalnykh-dannykh/">политикой обработки персональных данных<a></span>
+    <div class="data-processing-block">
+        <span class="data-processing">Нажимая кнопку "отправить", вы соглашаетесь c <a href="https://shans-group.com/soglasie-na-obrabotku-personalnykh-dannykh/">политикой обработки персональных данных</a></span>
+    </div>
+    <div class="data-processing-block">
+        <span class="data-processing"><a class="data-processing" href="http://promo.shans-group.com/rules">Правила проведения акции</a></span>
+    </div>
   </form>
   </div>
 
   <div class="slide" id="slide2">
-    <div class="wheel-bg">
+    <div class="wheel-bg shadow-for-wheel">
+
         <div class="deal-wheel">
+            <img class=" shadow-for-wheel-elem" src="logo-for-whell.webp" alt="">
         <!-- блок с призами -->
-        <ul class="spinner"></ul>
+        <ul class="spinner shadow-for-wheel-elem"></ul>
         <!-- язычок барабана -->
-        <div class="ticker"></div>
+        <div class="ticker shadow-for-wheel-elem"></div>
         <!-- кнопка -->
         <form method="POST" action="prize-output.php" style="display: contents;">
             <input class="btn-spin btn-result" type="submit" name="btn-spin-result" value="Испытай удачу">
@@ -138,10 +145,6 @@ function updateRange(value) {
     }
 }
 
-
-
-window.addEventListener('load', applyScale);
-window.addEventListener('resize', applyScale);
 </script>
 </body>
 </html>

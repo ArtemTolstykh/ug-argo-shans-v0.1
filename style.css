@@ -76,7 +76,7 @@ form {
   background-color: #fff;
   color: #000;
 
-  transform: scale(0.7);
+  transform: scale(0.8);
 
 
   -webkit-box-shadow: 10px 10px 14px -7px rgba(0,0,0,0.3);
@@ -180,6 +180,10 @@ output {
 
 }
 
+.data-processing-block {
+  margin-top: 15px;
+}
+
 .data-processing a {
   text-decoration: none;
   color: #75B72C;
@@ -203,7 +207,7 @@ output {
   position: relative;
   /* подключаем сетку */
   display: grid;
-  grid-gap: calc(var(--size) / 10);
+  grid-gap: calc(var(--size) / 20);
   /* выравниваем содержимое блока по центру */
   align-items: center;
   /* задаём имена областей внутри сетки */
@@ -242,6 +246,8 @@ output {
   transform: rotate(calc(var(--rotate, 25) * 1deg));
   /* рисуем круглую обводку, а всё, что не поместится, — будет скрыто за кругом */
   border-radius: 50%;
+
+
 }
 
 /* всё, что внутри этого блока, будет находиться в области сетки с названием spinner */
@@ -364,9 +370,27 @@ output {
   background-color: #fff;
   padding: 40px 60px;
   border-radius: 19px;
+
+}
+
+.deal-wheel img {
+  z-index: 1;
+  margin: 0 auto;
+  border-radius: 50%;
+  width: 100px;
+  height: 100px;
+}
+
+.shadow-for-wheel {
   -webkit-box-shadow: 10px 10px 14px -7px rgba(0,0,0,0.3);
   -moz-box-shadow: 10px 10px 14px -7px rgba(0,0,0,0.3);
   box-shadow: 10px 10px 14px -7px rgba(0,0,0,0.3);
+}
+
+.shadow-for-wheel-elem {
+  -webkit-box-shadow: 0px 0px 30px 0px rgba(0,0,0,0.30);
+  -moz-box-shadow: 0px 0px 30px 0px rgba(0,0,0,0.30);
+  box-shadow: 0px 0px 30px 0px rgba(0,0,0,0.30);
 }
 
 

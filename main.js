@@ -85,22 +85,24 @@ document.getElementById('phone').addEventListener('input', function (e) {
     }
 });
 
+
+
 // надписи и цвета на секторах
 const prizes = [
-  { text: "", color: "hsl(197 30% 43%)", count: 0 },
-  { text: "", color: "hsl(173 58% 39%)", count: 0 },
-  { text: "", color: "hsl(43 74% 66%)", count: 0 },
-  { text: "", color: "hsl(27 87% 67%)", count: 0 },
-  { text: "", color: "hsl(12 76% 61%)", count: 0 },
+
+  { text: "", color: "hsl(0 0% 20%)", count: 0 },
+  { text: "", color: "hsl(0 0% 97%)", count: 0 },
+  { text: "", color: "hsl(0 0% 20%)", count: 0 },
+  { text: "", color: "hsl(0 0% 97%)", count: 0 },
+  { text: "", color: "hsl(0 0% 20%)", count: 0 },
+  { text: "", color: "hsl(0 0% 97%)", count: 0 },
+  { text: "", color: "hsl(0 0% 20%)", count: 0 },
+  { text: "", color: "hsl(0 0% 97%)", count: 0 },
+  { text: "", color: "hsl(0 0% 20%)", count: 0 },
+  { text: "", color: "hsl(0 0% 97%)", count: 0 },
+  
 ];
 
-/*  Фирменные цвета
-  { text: "", color: "hsl(354 96% 38%)", count: 0 },
-  { text: "", color: "hsl(171 69% 22%)", count: 0 },
-  { text: "", color: "hsl(208 78% 38%)", count: 0 },
-  { text: "", color: "hsl(32 100% 47%)", count: 0 },
-  { text: "", color: "hsl(328 100% 44%)", count: 0 },
-*/
 
 let totalSpins = 0; //Кол во спинов 
 
