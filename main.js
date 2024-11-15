@@ -80,8 +80,8 @@ document.getElementById('phone').addEventListener('input', function (e) {
     }
 
     // Ограничиваем ввод длиной 16 символов (12 цифр после +7)
-    if (input.value.length > 20) {
-        input.value = input.value.slice(0, 20);
+    if (input.value.length > 21) {
+        input.value = input.value.slice(0, 21);
     }
 });
 
