@@ -1,3 +1,76 @@
+Для работы экспорта необходима библиотека!
+Установка библиотеки:
+
+
+1. Установка Composer на Windows
+Перейди на Composer.org и скачай установочный .exe файл для Windows.
+Запусти установочный файл и следуй инструкциям мастера установки. Composer предложит путь к php.exe, укажи его, если нужно (обычно это путь к PHP, установленному в системе).
+После установки, Composer будет добавлен в системный PATH, и ты сможешь использовать его из командной строки.
+
+2. Открытие командной строки
+Для выполнения команд, тебе нужно открыть командную строку. Для этого:
+
+Нажми Win + R и введи cmd, затем нажми Enter, или просто найди "Командная строка" через меню Пуск.
+Ты также можешь использовать PowerShell (его можно найти в меню Пуск) или использовать командную строку в редакторе, таком как VS Code.
+
+3. Перейти в папку с проектом
+Теперь тебе нужно перейти в папку, где находится твой PHP проект, используя команду cd. Например, если твой проект находится на рабочем столе, используй:
+
+cmd
+cd C:\Users\ТВОЕ_ИМЯ\Desktop\project_folder
+
+4. Установить библиотеку PhpSpreadsheet
+Теперь установи библиотеку PhpSpreadsheet с помощью Composer. Введи в командной строке следующую команду:
+
+cmd
+composer require phpoffice/phpspreadsheet
+Эта команда скачает все необходимые файлы и добавит библиотеку в папку vendor в твоем проекте.
+
+5. Использование библиотеки
+После установки необходимо подключить автозагрузчик Composer в твоем PHP скрипте, добавив строку:
+
+php
+require 'vendor/autoload.php';
+После этого ты сможешь использовать PhpSpreadsheet в своем проекте.
+
+
+Проблемы с которыми можно столкнуться:
+
+1. Отсутствующие расширения PHP
+В сообщении об ошибке указано, что отсутствуют следующие расширения:
+
+ext-fileinfo
+ext-gd
+ext-zip
+Чтобы решить эту проблему, необходимо включить или установить недостающие расширения.
+
+Как установить и включить расширения PHP:
+Открой php.ini файл конфигурации.
+
+Обычно он находится в папке, где установлен PHP, например: C:\xampp\php\php.ini или C:\php\php.ini.
+Найди и раскомментируй строки, связанные с необходимыми расширениями.
+
+Найди следующие строки и убери точку с запятой (;) перед ними, чтобы включить их:
+
+ini
+;extension=fileinfo
+;extension=gd
+;extension=zip
+
+После правки они должны выглядеть так:
+
+extension=fileinfo
+extension=gd
+extension=zip
+
+Перезапусти сервер (если используешь XAMPP или другой локальный сервер).
+
+Если ты используешь XAMPP, перезапусти Apache, чтобы изменения вступили в силу.
+
+
+Работа с бд
+
+Форматирование таблицы:
 sql:
 -- Отключаем проверку внешних ключей
 SET FOREIGN_KEY_CHECKS = 0;
@@ -10,18 +83,7 @@ TRUNCATE TABLE prizes;
 -- Включаем проверку внешних ключей
 SET FOREIGN_KEY_CHECKS = 1;
 
-INSERT INTO prizes (name)
-SELECT prize
-FROM (
-    SELECT 'Коньяк' AS prize FROM (SELECT 1 UNION ALL SELECT 2 UNION ALL SELECT 3 UNION ALL SELECT 4 UNION ALL SELECT 5 UNION ALL SELECT 6 UNION ALL SELECT 7 UNION ALL SELECT 8 UNION ALL SELECT 9 UNION ALL SELECT 10) AS series
-    UNION ALL
-    SELECT 'Термос' AS prize FROM (SELECT 1 UNION ALL SELECT 2 UNION ALL SELECT 3 UNION ALL SELECT 4 UNION ALL SELECT 5 UNION ALL SELECT 6 UNION ALL SELECT 7 UNION ALL SELECT 8 UNION ALL SELECT 9 UNION ALL SELECT 10 UNION ALL SELECT 11 UNION ALL SELECT 12 UNION ALL SELECT 13 UNION ALL SELECT 14 UNION ALL SELECT 15 UNION ALL SELECT 16 UNION ALL SELECT 17 UNION ALL SELECT 18 UNION ALL SELECT 19 UNION ALL SELECT 20 UNION ALL SELECT 21 UNION ALL SELECT 22 UNION ALL SELECT 23 UNION ALL SELECT 24 UNION ALL SELECT 25 UNION ALL SELECT 26 UNION ALL SELECT 27 UNION ALL SELECT 28 UNION ALL SELECT 29 UNION ALL SELECT 30 UNION ALL SELECT 31 UNION ALL SELECT 32 UNION ALL SELECT 33 UNION ALL SELECT 34 UNION ALL SELECT 35 UNION ALL SELECT 36 UNION ALL SELECT 37 UNION ALL SELECT 38 UNION ALL SELECT 39 UNION ALL SELECT 40 UNION ALL SELECT 41 UNION ALL SELECT 42 UNION ALL SELECT 43 UNION ALL SELECT 44 UNION ALL SELECT 45 UNION ALL SELECT 46 UNION ALL SELECT 47 UNION ALL SELECT 48 UNION ALL SELECT 49 UNION ALL SELECT 50) AS series
-    UNION ALL
-    SELECT 'Ежедневник' AS prize FROM (SELECT 1 UNION ALL SELECT 2 UNION ALL SELECT 3 UNION ALL SELECT 4 UNION ALL SELECT 5 UNION ALL SELECT 6 UNION ALL SELECT 7 UNION ALL SELECT 8 UNION ALL SELECT 9 UNION ALL SELECT 10 UNION ALL SELECT 11 UNION ALL SELECT 12 UNION ALL SELECT 13 UNION ALL SELECT 14 UNION ALL SELECT 15 UNION ALL SELECT 16 UNION ALL SELECT 17 UNION ALL SELECT 18 UNION ALL SELECT 19 UNION ALL SELECT 20 UNION ALL SELECT 21 UNION ALL SELECT 22 UNION ALL SELECT 23 UNION ALL SELECT 24 UNION ALL SELECT 25 UNION ALL SELECT 26 UNION ALL SELECT 27 UNION ALL SELECT 28 UNION ALL SELECT 29 UNION ALL SELECT 30 UNION ALL SELECT 31 UNION ALL SELECT 32 UNION ALL SELECT 33 UNION ALL SELECT 34 UNION ALL SELECT 35 UNION ALL SELECT 36 UNION ALL SELECT 37 UNION ALL SELECT 38 UNION ALL SELECT 39 UNION ALL SELECT 40 UNION ALL SELECT 41 UNION ALL SELECT 42 UNION ALL SELECT 43 UNION ALL SELECT 44 UNION ALL SELECT 45 UNION ALL SELECT 46 UNION ALL SELECT 47 UNION ALL SELECT 48 UNION ALL SELECT 49 UNION ALL SELECT 50 UNION ALL SELECT 51 UNION ALL SELECT 52 UNION ALL SELECT 53 UNION ALL SELECT 54 UNION ALL SELECT 55 UNION ALL SELECT 56 UNION ALL SELECT 57 UNION ALL SELECT 58 UNION ALL SELECT 59 UNION ALL SELECT 60) AS series
-) AS prizes_table
-ORDER BY RAND();
-
-
+Заполнение случайными призами:
 !!!!
 INSERT INTO prizes (name)
 SELECT prize
@@ -37,109 +99,7 @@ FROM (
 ORDER BY RAND();
 !!!!
 
-INSERT INTO prizes (id, name) VALUES 
-(121, 'Секретный подарок'),
-(122, 'Секретный подарок'),
-(123, 'Секретный подарок'),
-(124, 'Секретный подарок'),
-(125, 'Секретный подарок'),
-(126, 'Секретный подарок'),
-(127, 'Секретный подарок'),
-(128, 'Секретный подарок'),
-(129, 'Секретный подарок'),
-(130, 'Секретный подарок'),
-(131, 'Секретный подарок'),
-(132, 'Секретный подарок'),
-(133, 'Секретный подарок'),
-(134, 'Секретный подарок'),
-(135, 'Секретный подарок'),
-(136, 'Секретный подарок'),
-(137, 'Секретный подарок'),
-(138, 'Секретный подарок'),
-(139, 'Секретный подарок'),
-(140, 'Секретный подарок'),
-(141, 'Секретный подарок'),
-(142, 'Секретный подарок'),
-(143, 'Секретный подарок'),
-(144, 'Секретный подарок'),
-(145, 'Секретный подарок'),
-(146, 'Секретный подарок'),
-(147, 'Секретный подарок'),
-(148, 'Секретный подарок'),
-(149, 'Секретный подарок'),
-(150, 'Секретный подарок'),
-(151, 'Секретный подарок'),
-(152, 'Секретный подарок'),
-(153, 'Секретный подарок'),
-(154, 'Секретный подарок'),
-(155, 'Секретный подарок'),
-(156, 'Секретный подарок'),
-(157, 'Секретный подарок'),
-(158, 'Секретный подарок'),
-(159, 'Секретный подарок'),
-(160, 'Секретный подарок'),
-(161, 'Секретный подарок'),
-(162, 'Секретный подарок'),
-(163, 'Секретный подарок'),
-(164, 'Секретный подарок'),
-(165, 'Секретный подарок'),
-(166, 'Секретный подарок'),
-(167, 'Секретный подарок'),
-(168, 'Секретный подарок'),
-(169, 'Секретный подарок'),
-(170, 'Секретный подарок'),
-(171, 'Секретный подарок'),
-(172, 'Секретный подарок'),
-(173, 'Секретный подарок'),
-(174, 'Секретный подарок'),
-(175, 'Секретный подарок'),
-(176, 'Секретный подарок'),
-(177, 'Секретный подарок'),
-(178, 'Секретный подарок'),
-(179, 'Секретный подарок'),
-(180, 'Секретный подарок'),
-(181, 'Секретный подарок'),
-(182, 'Секретный подарок'),
-(183, 'Секретный подарок'),
-(184, 'Секретный подарок'),
-(185, 'Секретный подарок'),
-(186, 'Секретный подарок'),
-(187, 'Секретный подарок'),
-(188, 'Секретный подарок'),
-(189, 'Секретный подарок'),
-(190, 'Секретный подарок'),
-(191, 'Секретный подарок'),
-(192, 'Секретный подарок'),
-(193, 'Секретный подарок'),
-(194, 'Секретный подарок'),
-(195, 'Секретный подарок'),
-(196, 'Секретный подарок'),
-(197, 'Секретный подарок'),
-(198, 'Секретный подарок'),
-(199, 'Секретный подарок'),
-(200, 'Секретный подарок'),
-(201, 'Секретный подарок'),
-(202, 'Секретный подарок'),
-(203, 'Секретный подарок'),
-(204, 'Секретный подарок'),
-(205, 'Секретный подарок'),
-(206, 'Секретный подарок'),
-(207, 'Секретный подарок'),
-(208, 'Секретный подарок'),
-(209, 'Секретный подарок'),
-(210, 'Секретный подарок'),
-(211, 'Секретный подарок'),
-(212, 'Секретный подарок'),
-(213, 'Секретный подарок'),
-(214, 'Секретный подарок'),
-(215, 'Секретный подарок'),
-(216, 'Секретный подарок'),
-(217, 'Секретный подарок'),
-(218, 'Секретный подарок'),
-(219, 'Секретный подарок'),
-(220, 'Секретный подарок');
-
-Установка:
+Установка php и apache24:
 
 https://disk.yandex.ru/i/-2d9m2izP8VL2w
 https://windows.php.net/download/
