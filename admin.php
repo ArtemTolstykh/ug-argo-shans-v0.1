@@ -28,6 +28,9 @@
 
 <?php
 // Подключение к базе данных
+
+use PhpOffice\PhpSpreadsheet\Calculation\Information\Value;
+
 include 'db_conn.php';
 
 // Обновление статуса gift_given
@@ -81,12 +84,21 @@ if (!empty($searchPhone)) {
 
 $result = mysqli_query($conn, $query);
 
-echo '<form class="admin-search-phone" method="GET" action="admin.php">
+echo '
+<div class="doing_in_form">
+    <form class="admin-search-phone" method="GET" action="admin.php">
         <label for="phone">Поиск по номеру телефона:</label>
         <input type="text" name="phone" id="phone" value="" placeholder="без +7 и 8' . htmlspecialchars($searchPhone) . '">
         <button type="submit">Искать</button>
         <br><label>!!! Вводите номер без "+7" и "8"</label>
-      </form>';
+    </form>
+
+    <div class="download_in_form">        
+        <label for="download">Вы можете сохранить таблицу в Excel документ</label><br>
+        <input style="float:right; margin-top:5px;" type="submit" name="download" id="download_excel_table" value="Скачать">
+    </div>
+</div>
+';
 
 if (mysqli_num_rows($result) > 0) {
     echo "<table border='1'>";
@@ -129,5 +141,10 @@ if (mysqli_num_rows($result) > 0) {
 mysqli_close($conn);
 ?>
 
+<script type="text/javascript">
+    document.getElementById('download_excel_table').addEventListener('click', function() {
+        window.location.href = 'export_to_excel.php';
+    });
+</script>
 </body>
 </html>

@@ -1,6 +1,5 @@
 <?php 
-include 'db_conn.php';
-
+require 'db_conn.php';
 require 'vendor/autoload.php'; // Используем PhpSpreadsheet (рекомендуется)
 
 use PhpOffice\PhpSpreadsheet\Spreadsheet;
@@ -46,7 +45,22 @@ if ($result->num_rows > 0) {
     $fileName = 'winners_export.xlsx';
     $writer->save($fileName);
 
-    echo "Файл ".$fileName." успешно создан.";
+    // Отправляем заголовки для скачивания файла
+    header('Content-Description: File Transfer');
+    header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
+    header('Content-Disposition: attachment; filename="' . $fileName . '"');
+    header('Expires: 0');
+    header('Cache-Control: must-revalidate');
+    header('Pragma: public');
+    header('Content-Length: ' . filesize($fileName));
+    readfile($fileName);
+
+    // Удаляем файл после скачивания
+    unlink($fileName);
+
+    // Переадресация обратно на admin.php
+    header('Location: admin.php');
+    exit;
 } else {
     echo "Нет данных для экспорта.";
 }
@@ -54,3 +68,4 @@ if ($result->num_rows > 0) {
 $conn->close();
 
 ?>
+
