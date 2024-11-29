@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reg & Log</title>
+    <link rel="stylesheet" href="styles_for_reg.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container" id="container">
+        <div class="form-container sing-up">
+            <form action="">
+                <h1>Создать аккаунт</h1>
+                <span>Register for Email</span> <!-- Удалить -->
+                <input type="text" placeholder="name">
+                <input type="email" placeholder="Enter E-Mail">
+                <input type="password" placeholder="Enter Password">
+                <button>Sing Up</button>
+            </form>
+        </div>
+
+        <div class="form-container sing-in">
+            <form action="">
+                <h1>Sing In</h1>
+                <span>Login</span> <!-- Удалить -->
+                <input type="email" placeholder="Enter E-Mail">
+                <input type="password" placeholder="Enter Password">
+                <a href="#">Forget Pass?</a>
+                <button>Sing In</button>
+            </form>
+        </div>
+
+        <div class="toggle-container">
+            <div class="toggle">
+                <div class="toggle-panel toggle-left">
+                    <h1>Welcome</h1>
+                    <p>Sing in With ID & Pass</p>
+                    <button class="hidden" id="login">Sing In</button>
+                </div>
+                <div class="toggle-panel toggle-right">
+                    <h1>Hii Coder's</h1>
+                    <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit.</p>
+                    <button class="hidden" id="register">Sing Up</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="js_for_reg.js"></script>
+</body>
+</html>
